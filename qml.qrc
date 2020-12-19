@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>ChatListForm.qml</file>
+        <file>ChatListDelegate.qml</file>
+        <file>TabWidget.qml</file>
+    </qresource>
+    <qresource prefix="/image">
+        <file>image/search.png</file>
+        <file>image/head1.png</file>
+        <file>image/icon_chat_check.png</file>
+        <file>image/icon_chat_uncheck.png</file>
+        <file>image/icon_address_check.png</file>
+        <file>image/icon_address_uncheck.png</file>
+        <file>image/icon_file_check.png</file>
+        <file>image/icon_file_uncheck.png</file>
+    </qresource>
+</RCC>
