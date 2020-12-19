@@ -99,7 +99,7 @@ Rectangle {
                 anchors.fill: parent
                 model: $Model
                 onCurrentIndexChanged: {
-                    console.log("current index = ",currentIndex)
+                    $chatmanager.clickChatList(currentIndex)
                 }
                 delegate: ChatListDelegate{}
             }

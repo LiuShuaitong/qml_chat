@@ -13,7 +13,7 @@ ChatUserDBOperate::ChatUserDBOperate(QObject *parent) : QObject(parent)
         //建立和sqlite数据的连接
         _db = QSqlDatabase::addDatabase("QSQLITE");
         //设置数据库文件的名字
-        QString dbname = QDir::currentPath() +QString("/")+ QString("MACAddrs.db");
+        QString dbname = QDir::currentPath() +QString("/")+ QString("chat.db");
         _db.setDatabaseName(dbname);
     }
 }

@@ -24,7 +24,16 @@ public:
      * @param name
      */
     Q_INVOKABLE void search(const QString &name);
+
+    /**
+     * @brief clickChatList         QML回调当前index
+     * @param index
+     */
+    Q_INVOKABLE void clickChatList(int index);
 private:
+    /**
+     * @brief loadChatListData      加载数据
+     */
     void loadChatListData();
 private:
     bool _isConnectSql{false};
