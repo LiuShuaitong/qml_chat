@@ -17,7 +17,7 @@ Rectangle {
         color: "#FBFBFB"
         Label{
             id: id_chat_name
-            x:10
+            x:15
             y:15
             width: 300
             height: 20
@@ -44,7 +44,7 @@ Rectangle {
         y: id_chat_top.height
         width: parent.width
         height: parent.height - id_chat_top.height - id_textview.height
-        color: "#FFFFFF"
+        color: "#F3F3F3"
     }
 
     Rectangle{

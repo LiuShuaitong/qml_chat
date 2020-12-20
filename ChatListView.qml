@@ -32,7 +32,7 @@ Rectangle {
 
                 property bool same: false
                 property string msgTime: "2012/12/12"
-                property bool send: true
+                property bool send: false
                 property string content: qsTr("峡谷之巅，王者如你,峡谷之巅，王者如你峡谷之巅，王者如你峡谷之巅，王者如你峡谷之巅，王者如你峡谷之巅，王者如你峡谷之巅，王者如你峡谷之巅，王者如你峡谷之巅，王者如你峡谷之巅，王者如你峡谷之巅，王者如你")
                 //时间
                 Rectangle {
@@ -40,13 +40,14 @@ Rectangle {
                     height: id_time.implicitHeight + 2
                     anchors.horizontalCenter: parent.horizontalCenter
                     visible: !same
+                    color: "transparent"
                     Label {
                         id: id_time
                         text: msgTime
                         verticalAlignment: Text.AlignVCenter
                         horizontalAlignment: Text.AlignHCenter
                         color: "#B2B3B3"
-                        font.pointSize: 10
+                        font.pointSize: 11
                         anchors.fill: parent
                         anchors.margins:0
                     }
@@ -58,6 +59,7 @@ Rectangle {
                     spacing: 6
                     anchors.left: parent.left
                     visible: !send
+                    leftPadding: 15
                     //头像
                     Image {
                         id: avatarLeft
@@ -68,29 +70,25 @@ Rectangle {
 
                     //消息框
                     Rectangle {
-                        width: Math.min(id_msgtext_left.implicitWidth +14, listView.width -98)
+                        width: Math.min(id_msgtext_left.implicitWidth +14, listView.width - 200)
                         height: id_msgtext_left.implicitHeight + 16
-                        color:  send ? "#9dea6a" : "#eeeeee"
+                        color:  send ? "#9dea6a" : "#ffffff"
                         radius: 3
 
                         TextEdit {
                             id: id_msgtext_left
                             text: content
-                            font.family: "华文细黑"
-                            font.pointSize: 11
+                            font.family: qsTr("微软雅黑")
+                            font.pointSize: 13
                             anchors.fill: parent
-                            anchors.topMargin: 9
-                            anchors.bottomMargin: 7
-                            anchors.rightMargin: 7
-                            anchors.leftMargin: 7
+                            anchors.margins: 5
                             wrapMode: TextEdit.Wrap
                             enabled: true
                             readOnly: true
                             selectByKeyboard: true
                             selectByMouse: true
-                            selectedTextColor: "white"
                             persistentSelection:true
-                            selectionColor: "#3396FF"
+                            selectionColor: "#BAD7FB"
                         }
                     }
                 }
@@ -98,12 +96,12 @@ Rectangle {
                 Row {
                     id: id_rightRow
                     spacing: 6
-                    anchors.left: parent.left
+                    anchors.right: parent.right
                     visible: send
-
+                    rightPadding: 15
                     //消息框
                     Rectangle {
-                        width: Math.min(id_msgtext_right.implicitWidth +14, listView.width -98)
+                        width: Math.min(id_msgtext_right.implicitWidth +14, listView.width - 200)
                         height: id_msgtext_right.implicitHeight + 16
                         color:  send ? "#9dea6a" : "#eeeeee"
                         radius: 3
