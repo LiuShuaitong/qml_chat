@@ -67,7 +67,6 @@ Rectangle {
                             font.family: "微软雅黑"
                             verticalAlignment: Text.AlignVCenter;
                             selectByMouse:true;
-                            focus: true;
                             placeholderText:qsTr("搜索");
 
                             background: Rectangle{
