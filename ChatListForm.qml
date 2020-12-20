@@ -8,10 +8,9 @@ Rectangle {
     border.width: 1;
     border.color: "#E7E7E7"
     radius:  2;
-
     Column {
-        Rectangle
-        {
+
+        Rectangle {
             id: topRectangle
             width: chatlistform.width - 2
             height: 50
@@ -87,8 +86,8 @@ Rectangle {
                 }
             }
 
+            color: "#FBFBFB"
         }
-
 
         Rectangle {
             x: 1
@@ -98,6 +97,10 @@ Rectangle {
                 id:listView
                 anchors.fill: parent
                 model: $Model
+                // 切换 item 的时候将 currentIndex 也跟随着变化
+                highlightRangeMode: ListView.ApplyRange
+                // 禁止首尾滑动
+//                boundsBehavior:Flickable.StopAtBounds
                 onCurrentIndexChanged: {
                     $chatmanager.clickChatList(currentIndex)
                 }

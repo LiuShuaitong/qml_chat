@@ -42,6 +42,11 @@ void ChatListManager::registQMLEngine(const QQmlApplicationEngine &engine)
     engine.rootContext()->setContextProperty("$chatmanager",this);
 }
 
+void ChatListManager::registQMLObject(QObject *object)
+{
+    _root = object;
+}
+
 void ChatListManager::search(const QString &name)
 {
     if(_isConnectSql)
@@ -54,14 +59,44 @@ void ChatListManager::search(const QString &name)
         }
     }
 }
-
+#include <QLabel>
 void ChatListManager::clickChatList(int index)
 {
     if(_model)
     {
         QString id = _model->data(_model->index(index,0),ChatListModel::IDRole).toString();
-        qDebug() << __func__ << index << id;
+        QString name = _model->data(_model->index(index,0),ChatListModel::NAMERole).toString();
+        if(_root)
+        {
+            // 通过值绑定的方式调用
+            setName(name);
+
+            // C++ 调用QML
+            QObject *pRectangle = _root->findChild<QObject *>("id_chat_form");
+            if( pRectangle )
+            {
+                QVariant returnedValue;
+                QMetaObject::invokeMethod(pRectangle, "chatName", Q_RETURN_ARG(QVariant, returnedValue),Q_ARG(QVariant, name));
+            }
+            else
+            {
+                qDebug() << "findChild object id_chat_form failed.";
+            }
+        }
     }
+}
+
+void ChatListManager::setName(const QString &name)
+{
+    if(_name!=name){
+        _name = name;
+        emit nameChanged(name);
+    }
+}
+
+QString ChatListManager::getName() const
+{
+    return _name;
 }
 
 void ChatListManager::loadChatListData()
@@ -72,6 +107,9 @@ void ChatListManager::loadChatListData()
         for(int i = 0;i < list.size();i++)
         {
             _model->insert(i,list.at(i));
+        }
+        if(list.size() > 0){
+            setName(list.first().name());
         }
     }
 }

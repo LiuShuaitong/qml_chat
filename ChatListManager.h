@@ -19,6 +19,8 @@ public:
      */
     void registQMLEngine(const QQmlApplicationEngine &engine);
 
+    void registQMLObject(QObject *object);
+
     /**
      * @brief search                QML回调查找用户
      * @param name
@@ -30,6 +32,14 @@ public:
      * @param index
      */
     Q_INVOKABLE void clickChatList(int index);
+
+    // 注册属性，使之可以在QML中调用
+    Q_PROPERTY(QString name READ getName WRITE setName NOTIFY nameChanged);
+    void setName(const QString &name);
+    QString getName() const;
+
+signals:
+    void nameChanged(const QString name);
 private:
     /**
      * @brief loadChatListData      加载数据
@@ -37,7 +47,9 @@ private:
     void loadChatListData();
 private:
     bool _isConnectSql{false};
-    ChatListModel    *_model{nullptr};
+    QString _name;
+    QObject             *_root{nullptr};
+    ChatListModel       *_model{nullptr};
     ChatUserDBOperate   *_sqlOperator{nullptr};
 };
 

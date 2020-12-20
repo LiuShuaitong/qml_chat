@@ -29,6 +29,13 @@ ApplicationWindow {
                     width: 260
                     height: window.height
                 }
+                ChatForm{
+                    id:id_chat_form
+                    x: chatlistform.width
+                    width: parent.width - chatlistform.width - 70;
+                    height: window.height
+                    color: "#FFFFFF"
+                }
             }
         }
 

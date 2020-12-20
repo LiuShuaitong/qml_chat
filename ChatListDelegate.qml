@@ -15,7 +15,7 @@ ItemDelegate {
             top: parent.top;
             bottomMargin: 1
         }
-        color: "#acb2c2"
+        color: "#ACB2C2"
     }
 
     Image {

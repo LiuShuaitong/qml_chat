@@ -4,6 +4,7 @@
         <file>ChatListForm.qml</file>
         <file>ChatListDelegate.qml</file>
         <file>TabWidget.qml</file>
+        <file>ChatForm.qml</file>
     </qresource>
     <qresource prefix="/image">
         <file>image/search.png</file>

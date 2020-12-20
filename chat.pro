@@ -1,4 +1,4 @@
-QT += quick qml network positioning location sql
+QT += quick qml network positioning location sql widgets
 
 CONFIG += c++11
 
