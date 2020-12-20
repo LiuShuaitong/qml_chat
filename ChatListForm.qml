@@ -104,7 +104,13 @@ Rectangle {
                     $chatmanager.clickChatList(currentIndex)
                 }
                 delegate: ChatListDelegate{}
+
+
+                ScrollBar.vertical: ScrollBar {
+                    id: verScrollBar
+                }
             }
+
         }
 
     }

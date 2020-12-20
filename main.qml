@@ -74,7 +74,6 @@ ApplicationWindow {
             }
         }
     }
-
 }
 
 

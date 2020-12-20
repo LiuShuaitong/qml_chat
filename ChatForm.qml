@@ -11,6 +11,7 @@ Rectangle {
 
     // 顶部
     Rectangle{
+        id: id_chat_top
         width: id_chat_form.width
         height: 50
         color: "#FBFBFB"
@@ -38,8 +39,17 @@ Rectangle {
         }
     }
 
+    ChatListView{
+        id: id_chatview
+        y: id_chat_top.height
+        width: parent.width
+        height: parent.height - id_chat_top.height - id_textview.height
+        color: "#FFFFFF"
+    }
+
     Rectangle{
-        y: parent.height - 180
+        id: id_textview
+        y: parent.height - height -id_sendbtn.height
         width: parent.width
         height: 150
 
@@ -100,7 +110,9 @@ Rectangle {
 //        }
     }
 
+
     Button{
+        id:id_sendbtn
         text:"发送"
         background: Rectangle{
             color: "#57BD6B"
