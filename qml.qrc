@@ -1,10 +1,10 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>ChatListForm.qml</file>
-        <file>ChatListDelegate.qml</file>
+        <file>ChatUserForm.qml</file>
+        <file>ChatUserDelegate.qml</file>
         <file>TabWidget.qml</file>
-        <file>ChatForm.qml</file>
+        <file>ChatListForm.qml</file>
         <file>ChatListView.qml</file>
     </qresource>
     <qresource prefix="/image">

@@ -3,7 +3,7 @@ import QtQuick.Controls 2.2
 
 ApplicationWindow {
 
-    id: window
+    id: id_application_window
     visible: true
     width: 1000
     height: 730
@@ -13,7 +13,7 @@ ApplicationWindow {
     }
 
     TabWidget {
-        id: tabs
+        id: id_tabs
         width: parent.width
         height: parent.height
 
@@ -24,16 +24,18 @@ ApplicationWindow {
             Rectangle {
                 anchors.fill: parent;
                 color: "#ff7f7f"
-                ChatListForm{
-                    id: chatlistform
+                // 聊天用户form
+                ChatUserForm{
+                    id: id_chat_user_form
                     width: 260
-                    height: window.height
+                    height: parent.height
                 }
-                ChatForm{
-                    id:id_chat_form
-                    x: chatlistform.width
-                    width: parent.width - chatlistform.width - 70;
-                    height: window.height
+                ChatListForm{
+                    // 聊天历史记录
+                    id:id_chat_list_form
+                    x: id_chat_user_form.width
+                    width: parent.width - id_chat_user_form.width - 70;
+                    height: parent.height
                     color: "#FFFFFF"
                 }
             }

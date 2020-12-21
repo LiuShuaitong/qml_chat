@@ -2,11 +2,12 @@
 import QtQuick.Controls 2.2
 
 ItemDelegate {
-    id: root
     checkable: true
     width: parent.width
     height: 75
-    onClicked: ListView.view.currentIndex = index
+    onClicked: {
+        ListView.view.currentIndex = index
+    }
 
     Rectangle {
         width: parent.width;
@@ -19,7 +20,6 @@ ItemDelegate {
     }
 
     Image {
-        id: id_headimg
         x: 10
         y: 15
         sourceSize: Qt.size(45,45)
@@ -27,7 +27,6 @@ ItemDelegate {
     }
 
     Label{
-        id: id_nameLabel
         x:65
         y:15
         width: 120
@@ -36,7 +35,6 @@ ItemDelegate {
     }
 
     Label{
-        id: id_TimeLabel
         x:200
         y:15
         width: 60
@@ -46,7 +44,6 @@ ItemDelegate {
     }
 
     Label{
-        id: id_MsgLabel
         x:65
         y:45
         color: "#888888"

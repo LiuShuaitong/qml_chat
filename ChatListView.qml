@@ -3,13 +3,10 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.0
 
 Rectangle {
-
     id: id_chatview
-
     ColumnLayout {
         id:page
         anchors.fill: parent
-
         ListView {
             id: listView
             Layout.fillWidth: true
@@ -22,18 +19,15 @@ Rectangle {
             spacing:14
             model:10
             delegate: Column {
-
                 anchors.left: parent.left
                 spacing: 14
                 width: parent.width
 
-                property bool sendmessage: send
-                property bool sameTime: same
-
                 property bool same: false
                 property string msgTime: "2012/12/12"
-                property bool send: false
+                property bool send: true
                 property string content: qsTr("峡谷之巅，王者如你,峡谷之巅，王者如你峡谷之巅，王者如你峡谷之巅，王者如你峡谷之巅，王者如你峡谷之巅，王者如你峡谷之巅，王者如你峡谷之巅，王者如你峡谷之巅，王者如你峡谷之巅，王者如你峡谷之巅，王者如你")
+
                 //时间
                 Rectangle {
                     width: id_time.implicitWidth + 10
@@ -59,11 +53,12 @@ Rectangle {
                     spacing: 6
                     anchors.left: parent.left
                     visible: !send
-                    leftPadding: 15
+//                    leftPadding: 15
+
                     //头像
                     Image {
                         id: avatarLeft
-                        height: 36
+                        height: 35
                         width: height
                         source: "image/image/head1.png"
                     }
@@ -74,7 +69,6 @@ Rectangle {
                         height: id_msgtext_left.implicitHeight + 16
                         color:  send ? "#9dea6a" : "#ffffff"
                         radius: 3
-
                         TextEdit {
                             id: id_msgtext_left
                             text: content
@@ -83,10 +77,10 @@ Rectangle {
                             anchors.fill: parent
                             anchors.margins: 5
                             wrapMode: TextEdit.Wrap
-                            enabled: true
                             readOnly: true
                             selectByKeyboard: true
                             selectByMouse: true
+                            // 选择区域在失去焦点是否还保持
                             persistentSelection:true
                             selectionColor: "#BAD7FB"
                         }
@@ -109,21 +103,17 @@ Rectangle {
                         TextEdit {
                             id: id_msgtext_right
                             text: content
-                            font.family: "华文细黑"
-                            font.pointSize: 11
+                            font.family: qsTr("微软雅黑")
+                            font.pointSize: 13
                             anchors.fill: parent
-                            anchors.topMargin: 9
-                            anchors.bottomMargin: 7
-                            anchors.rightMargin: 7
-                            anchors.leftMargin: 7
+                            anchors.margins: 5
                             wrapMode: TextEdit.Wrap
-                            enabled: true
                             readOnly: true
                             selectByKeyboard: true
                             selectByMouse: true
-                            selectedTextColor: "white"
+                            // 选择区域在失去焦点是否还保持
                             persistentSelection:true
-                            selectionColor: "#3396FF"
+                            selectionColor: "#BAD7FB"
                         }
                     }
 

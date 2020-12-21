@@ -1,117 +1,115 @@
-﻿import QtQuick 2.7
+﻿import QtQuick 2.2
 import QtQuick.Controls 2.2
-import QtPositioning 5.5
-import QtLocation 5.6
 
 Rectangle {
-    id: chatlistform
-    border.width: 1;
-    border.color: "#E7E7E7"
-    radius:  2;
-    Column {
+    id: id_chat_form
+    objectName: "id_chat_form"
+    function chatName(name){
+        console.log(name);
+    }
+
+    // 顶部
+    Rectangle{
+        id: id_chat_top
+        width: parent.width
+        height: 50
+        color: "#FBFBFB"
+        Label{
+            x:15
+            y:15
+            width: 300
+            height: 20
+            color: "#000000"
+            font.pixelSize: 20
+            font.bold:true
+            text: $chatmanager.name;
+            verticalAlignment: Text.AlignVCenter;
+        }
+        // 分割线
+        Rectangle {
+            width: parent.width;
+            height: 1
+            anchors {
+                top: parent.bottom;
+                bottomMargin: 1
+            }
+            color: "#ACB2C2"
+        }
+    }
+
+    ChatListView{
+        y: id_chat_top.height
+        width: parent.width
+        height: parent.height - id_chat_top.height - id_message_view.height
+        color: "#F3F3F3"
+    }
+
+    Rectangle{
+        id: id_message_view
+        y: parent.height - height -id_send_btn.height
+        width: parent.width
+        height: 150
 
         Rectangle {
-            id: topRectangle
-            width: chatlistform.width - 2
-            height: 50
-            x:1
-            Row
-            {
-                topPadding: 10
-                leftPadding: 10
-                Rectangle{
-                    id: searchRectangle
-                    width: 200
-                    height: 30
-                    color: "#E6E6E6"
-                    radius: 4;
-                    //这一属性设置表示如果他的子类超出了范围，那么就剪切掉，不让他显示和起作用
-                    clip:true
-
-                    Row{
-
-                        leftPadding: 5
-
-                        Button{
-
-                            property alias initTxt: txtinput.text;
-
-                            id: seachbtn
-                            y: 5
-                            width: 20
-                            height: 20
-                            Image {
-                                id: imgbtn
-                                sourceSize.width: 20
-                                sourceSize.height: 20
-                                source: "image/image/search.png"
-                            }
-
-                            background: Rectangle{
-                                color: "transparent"
-                            }
-
-                            onClicked: {
-                                $chatmanager.search(initTxt)
-                            }
-                        }
-
-                        TextField{
-                            id: txtinput;
-                            width: 175
-                            height: 30
-                            // 宽度不够显示时的，滚动
-                            autoScroll: true;
-                            clip:true;
-                            font.pixelSize: 12
-                            font.family: "微软雅黑"
-                            verticalAlignment: Text.AlignVCenter;
-                            selectByMouse:true;
-                            placeholderText:qsTr("搜索");
-
-                            background: Rectangle{
-                                border.width: 0;
-                                color: "transparent"
-                                implicitHeight: 25;
-                                implicitWidth: 175
-                            }
-                            onTextChanged: {
-                                $chatmanager.search(text)
-                            }
-                        }
-
-                    }
-
-                }
+            width: parent.width;
+            height: 1
+            anchors {
+                top: parent.top;
+                bottomMargin: 1
             }
-
-            color: "#FBFBFB"
+            color: "#ACB2C2"
         }
 
-        Rectangle {
-            x: 1
-            width: chatlistform.width - 2
-            height: chatlistform.height - topRectangle.height
-            ListView{
-                id:listView
-                anchors.fill: parent
-                model: $Model
-                // 切换 item 的时候将 currentIndex 也跟随着变化
-                highlightRangeMode: ListView.ApplyRange
-                // 禁止首尾滑动
-//                boundsBehavior:Flickable.StopAtBounds
-                onCurrentIndexChanged: {
-                    $chatmanager.clickChatList(currentIndex)
-                }
-                delegate: ChatListDelegate{}
+        Flickable{
+            id : flick
+            clip: true
+            anchors.fill: parent
+            contentHeight: id_message_eidt.implicitHeight
 
-
-                ScrollBar.vertical: ScrollBar {
-                    id: verScrollBar
-                }
+            function ensureVisible(r){
+                if (contentX >= r.x)
+                    contentX = r.x;
+                else if (contentX+width <= r.x+r.width)
+                    contentX = r.x+r.width-width;
+                if (contentY >= r.y)
+                    contentY = r.y;
+                else if (contentY+height <= r.y+r.height)
+                    contentY = r.y+r.height-height;
             }
 
+            TextEdit{
+                id: id_message_eidt
+                x:2
+                width: parent.width
+                selectByKeyboard: true
+                selectByMouse: true
+                wrapMode: TextEdit.Wrap
+                textFormat: TextEdit.AutoText
+                font.family: qsTr("微软雅黑")
+                font.pointSize: 18
+                focus: true
+                onCursorRectangleChanged: flick.ensureVisible(cursorRectangle)
+            }
+            ScrollBar.vertical: ScrollBar {
+                id: verScrollBar
+            }
         }
+    }
 
+
+    Button{
+        id:id_send_btn
+        text:"发送"
+        background: Rectangle{
+            color: "#57BD6B"
+        }
+        width:70
+        height:30
+        x:parent.width - width
+        y:parent.height - height
+        onClicked: {
+            id_message_eidt.clear()
+            id_message_eidt.forceActiveFocus()
+        }
     }
 }
