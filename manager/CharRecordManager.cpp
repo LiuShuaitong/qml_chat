@@ -214,6 +214,20 @@ void CharRecordManager::send(const QString &msg)
         _db->insertTabData(data);
     }
     emit sig_addChatMsg(_userId,msg,time);
+
+    if(_root == nullptr){
+        return;
+    }
+    QObject *item = _root->findChild<QObject *>("id_chatview");
+    if( item )
+    {
+        QVariant returnedValue;
+        QMetaObject::invokeMethod(item, "position", Q_RETURN_ARG(QVariant, returnedValue));
+    }
+    else
+    {
+        qDebug() << "findChild object id_chatview failed.";
+    }
 }
 
 void CharRecordManager::on_chatUserClick(const QString &id)

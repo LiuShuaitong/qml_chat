@@ -4,6 +4,7 @@ import QtQuick.Controls 2.0
 
 Rectangle {
     id: id_chatview
+    objectName: "id_chatview"
 
     ColumnLayout {
         id:id_page
@@ -23,6 +24,10 @@ Rectangle {
                 id: verScrollBar
             }
         }
+    }
+
+    function position(){
+        listView.positionViewAtEnd()
     }
 
     Component.onCompleted: {

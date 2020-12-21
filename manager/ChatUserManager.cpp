@@ -58,7 +58,7 @@ void ChatUserManager::search(const QString &name)
         }
     }
 }
-#include <QLabel>
+
 void ChatUserManager::clickChatList(int index)
 {
     if(_model)
