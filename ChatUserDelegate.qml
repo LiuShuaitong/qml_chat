@@ -8,6 +8,7 @@ ItemDelegate {
 
     onClicked: {
         ListView.view.currentIndex = index
+        $chat_list_manager.clickChatList(index)
     }
 
     Rectangle {

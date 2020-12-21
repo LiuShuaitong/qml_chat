@@ -93,9 +93,7 @@ Rectangle {
                 highlightRangeMode: ListView.ApplyRange
                 // 禁止首尾滑动
 //                boundsBehavior:Flickable.StopAtBounds
-                onCurrentIndexChanged: {
-                    $chat_list_manager.clickChatList(currentIndex)
-                }
+
                 delegate: ChatUserDelegate{}
 
                 ScrollBar.vertical: ScrollBar {

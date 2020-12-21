@@ -97,9 +97,7 @@ Rectangle {
     }
 
     Button{
-
         property alias msg_edit: id_message_eidt.text;
-
         id:id_send_btn
         text:"发送"
         background: Rectangle{
