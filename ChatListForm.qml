@@ -8,6 +8,13 @@ Rectangle {
         console.log(name);
     }
 
+    ChatListView{
+        y: id_chat_top.height
+        width: parent.width
+        height: parent.height - id_chat_top.height - id_message_view.height - id_send_btn.height
+        color: "#F3F3F3"
+    }
+
     // 顶部
     Rectangle{
         id: id_chat_top
@@ -35,13 +42,6 @@ Rectangle {
             }
             color: "#ACB2C2"
         }
-    }
-
-    ChatListView{
-        y: id_chat_top.height
-        width: parent.width
-        height: parent.height - id_chat_top.height - id_message_view.height - id_send_btn.height
-        color: "#F3F3F3"
     }
 
     Rectangle{
