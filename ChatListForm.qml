@@ -96,7 +96,6 @@ Rectangle {
         }
     }
 
-
     Button{
         id:id_send_btn
         text:"发送"

@@ -205,14 +205,12 @@ void CharRecordManager::createDB()
 
 void CharRecordManager::on_chatUserClick(const QString &id)
 {
-    qDebug() << __func__ << id;
     if(_isConnectSql)
     {
         _model->clear();
         QList<ChatRecordListData> list = _db->queryTabData(id);
         for(int i = 0;i < list.size();i++)
         {
-            qDebug() << __func__ << list.at(i).id() << list.at(i).userid() << list.at(i).sender() << list.at(i).type() << list.at(i).time() << list.at(i).msg();
             _model->insert(i,list.at(i));
         }
     }
