@@ -6,7 +6,7 @@
 #include <QSqlQueryModel>
 #include <QDebug>
 #include <QSqlError>
-#include "ChatUserListData.h"
+#include "data/ChatUserListData.h"
 
 class ChatUserDBOperate : public QObject
 {

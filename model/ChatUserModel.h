@@ -1,10 +1,10 @@
-﻿#ifndef CHATLISTMODEL_H
-#define CHATLISTMODEL_H
+﻿#ifndef CHATUSERMODEL_H
+#define CHATUSERMODEL_H
 
-#include <ChatUserListData.h>
+#include "data/ChatUserListData.h"
 #include <QAbstractListModel>
 
-class ChatListModel : public QAbstractListModel
+class ChatUserModel : public QAbstractListModel
 {
     Q_OBJECT
 public:
@@ -20,8 +20,8 @@ public:
         MSGRole
     };
 
-    explicit ChatListModel(QObject *parent = nullptr);
-    ~ChatListModel();
+    explicit ChatUserModel(QObject *parent = nullptr);
+    ~ChatUserModel();
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
@@ -38,4 +38,4 @@ private:
     QList<ChatUserListData> _dataList;
 };
 
-#endif // CHATLISTMODEL_H
+#endif // CHATUSERMODEL_H

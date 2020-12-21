@@ -1,14 +1,14 @@
 ﻿#include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-#include <ChatListManager.h>
+#include <manager/ChatUserManager.h>
 
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
-    ChatListManager manager;
+    ChatUserManager manager;
     QQmlApplicationEngine engine;
     manager.registQMLEngine(engine);
     const QUrl url(QStringLiteral("qrc:/main.qml"));

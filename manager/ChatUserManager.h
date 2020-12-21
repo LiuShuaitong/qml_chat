@@ -1,17 +1,17 @@
-﻿#ifndef CHATLISTMANAGER_H
-#define CHATLISTMANAGER_H
+﻿#ifndef CHATUSERMANAGER_H
+#define CHATUSERMANAGER_H
 
 #include <QObject>
-#include "ChatListModel.h"
-#include "ChatUserDBOperate.h"
+#include "model/ChatUserModel.h"
+#include "db/ChatUserDBOperate.h"
 #include <QQmlApplicationEngine>
 
-class ChatListManager : public QObject
+class ChatUserManager : public QObject
 {
     Q_OBJECT
 public:
-    explicit ChatListManager(QObject *parent = nullptr);
-    ~ChatListManager();
+    explicit ChatUserManager(QObject *parent = nullptr);
+    ~ChatUserManager();
 
     /**
      * @brief registQMLEngine       注册QML事件
@@ -49,8 +49,8 @@ private:
     bool _isConnectSql{false};
     QString _name;
     QObject             *_root{nullptr};
-    ChatListModel       *_model{nullptr};
+    ChatUserModel       *_model{nullptr};
     ChatUserDBOperate   *_sqlOperator{nullptr};
 };
 
-#endif // CHATLISTMANAGER_H
+#endif // CHATUSERMANAGER_H

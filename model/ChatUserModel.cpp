@@ -1,22 +1,22 @@
-﻿#include "ChatListModel.h"
+﻿#include "ChatUserModel.h"
 #include <QDebug>
 
-ChatListModel::ChatListModel(QObject *parent):
+ChatUserModel::ChatUserModel(QObject *parent):
     QAbstractListModel(parent)
 {
 }
 
-ChatListModel::~ChatListModel()
+ChatUserModel::~ChatUserModel()
 {
 }
 
-int ChatListModel::rowCount(const QModelIndex &parent) const
+int ChatUserModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
     return _dataList.count();
 }
 
-QVariant ChatListModel::data(const QModelIndex &index, int role) const
+QVariant ChatUserModel::data(const QModelIndex &index, int role) const
 {
     int row = index.row();
 
@@ -39,7 +39,7 @@ QVariant ChatListModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-void ChatListModel::insert(int index, const ChatUserListData &data)
+void ChatUserModel::insert(int index, const ChatUserListData &data)
 {
     if(index < 0 || index > _dataList.count()) {
         return;
@@ -49,7 +49,7 @@ void ChatListModel::insert(int index, const ChatUserListData &data)
     emit endInsertRows();
 }
 
-void ChatListModel::remove(int index)
+void ChatUserModel::remove(int index)
 {
     if(index < 0 || index >= _dataList.count()) {
         return;
@@ -60,17 +60,17 @@ void ChatListModel::remove(int index)
     endRemoveRows();
 }
 
-void ChatListModel::append(const QString &id, const QString &name, const QString &time, const QString &msg)
+void ChatUserModel::append(const QString &id, const QString &name, const QString &time, const QString &msg)
 {
     insert(count(), ChatUserListData(id,name,time,msg));
 }
 
-int ChatListModel::count()
+int ChatUserModel::count()
 {
     return rowCount(QModelIndex());
 }
 
-void ChatListModel::clear()
+void ChatUserModel::clear()
 {
     while (_dataList.size() > 0)
     {
@@ -78,7 +78,7 @@ void ChatListModel::clear()
     }
 }
 
-QHash<int, QByteArray> ChatListModel::roleNames() const
+QHash<int, QByteArray> ChatUserModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
     roles[IDRole] = "mdId";

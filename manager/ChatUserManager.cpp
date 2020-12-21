@@ -1,11 +1,11 @@
-﻿#include "ChatListManager.h"
+﻿#include "ChatUserManager.h"
 #include <QQmlContext>
 
 #define CHATLIST    "chatlist"
 
-ChatListManager::ChatListManager(QObject *parent) :
+ChatUserManager::ChatUserManager(QObject *parent) :
     QObject(parent),
-    _model(new ChatListModel(this)),
+    _model(new ChatUserModel(this)),
     _sqlOperator(new ChatUserDBOperate(this))
 {
     _isConnectSql = _sqlOperator->openDB();
@@ -29,25 +29,25 @@ ChatListManager::ChatListManager(QObject *parent) :
     loadChatListData();
 }
 
-ChatListManager::~ChatListManager()
+ChatUserManager::~ChatUserManager()
 {
     if(_isConnectSql){
         _sqlOperator->closeDB();
     }
 }
 
-void ChatListManager::registQMLEngine(const QQmlApplicationEngine &engine)
+void ChatUserManager::registQMLEngine(const QQmlApplicationEngine &engine)
 {
     engine.rootContext()->setContextProperty("$Model",_model);
     engine.rootContext()->setContextProperty("$chatmanager",this);
 }
 
-void ChatListManager::registQMLObject(QObject *object)
+void ChatUserManager::registQMLObject(QObject *object)
 {
     _root = object;
 }
 
-void ChatListManager::search(const QString &name)
+void ChatUserManager::search(const QString &name)
 {
     if(_isConnectSql)
     {
@@ -60,12 +60,12 @@ void ChatListManager::search(const QString &name)
     }
 }
 #include <QLabel>
-void ChatListManager::clickChatList(int index)
+void ChatUserManager::clickChatList(int index)
 {
     if(_model)
     {
-        QString id = _model->data(_model->index(index,0),ChatListModel::IDRole).toString();
-        QString name = _model->data(_model->index(index,0),ChatListModel::NAMERole).toString();
+        QString id = _model->data(_model->index(index,0),ChatUserModel::IDRole).toString();
+        QString name = _model->data(_model->index(index,0),ChatUserModel::NAMERole).toString();
         if(_root)
         {
             // 通过值绑定的方式调用
@@ -86,7 +86,7 @@ void ChatListManager::clickChatList(int index)
     }
 }
 
-void ChatListManager::setName(const QString &name)
+void ChatUserManager::setName(const QString &name)
 {
     if(_name!=name){
         _name = name;
@@ -94,12 +94,12 @@ void ChatListManager::setName(const QString &name)
     }
 }
 
-QString ChatListManager::getName() const
+QString ChatUserManager::getName() const
 {
     return _name;
 }
 
-void ChatListManager::loadChatListData()
+void ChatUserManager::loadChatListData()
 {
     if(_isConnectSql)
     {
