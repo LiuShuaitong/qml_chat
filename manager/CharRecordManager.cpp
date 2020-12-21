@@ -1,5 +1,6 @@
 ﻿#include "CharRecordManager.h"
 #include <QQmlContext>
+#include <QDateTime>
 
 #define CHATRECORD    "chatrecord"
 
@@ -203,8 +204,21 @@ void CharRecordManager::createDB()
     }
 }
 
+void CharRecordManager::send(const QString &msg)
+{
+    QString time = QDateTime::currentDateTime().toString("hh:mm:ss") ;
+    ChatRecordListData data(0,_userId,true,time,msg,ChatRecordListData::Text);
+    _model->insert(_model->count(),data);
+    if(_isConnectSql)
+    {
+        _db->insertTabData(data);
+    }
+    emit sig_addChatMsg(_userId,msg,time);
+}
+
 void CharRecordManager::on_chatUserClick(const QString &id)
 {
+    _userId = id;
     if(_isConnectSql)
     {
         _model->clear();

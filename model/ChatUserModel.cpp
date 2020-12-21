@@ -65,6 +65,24 @@ void ChatUserModel::append(const QString &id, const QString &name, const QString
     insert(count(), ChatUserListData(id,name,time,msg));
 }
 
+ChatUserListData ChatUserModel::update(const QString &userid, const QString &msg,const QString &time)
+{
+    for(int i=0;i<_dataList.size();i++)
+    {
+        if(_dataList.at(i).id() == userid)
+        {
+            beginResetModel();
+            ChatUserListData data = _dataList.at(i);
+            data.setTime(time);
+            data.setMsg(msg);
+            _dataList.replace(i,data);
+            endResetModel();
+            return data;
+        }
+    }
+    return ChatUserListData("","","","");
+}
+
 int ChatUserModel::count()
 {
     return rowCount(QModelIndex());

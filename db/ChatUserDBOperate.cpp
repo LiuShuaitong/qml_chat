@@ -55,6 +55,22 @@ QList<ChatUserListData> ChatUserDBOperate::queryTabData(const QString &name)
     return QList<ChatUserListData>();
 }
 
+void ChatUserDBOperate::updateTabData(const ChatUserListData &data)
+{
+    QSqlQuery sql_query;
+
+    QString insert_sql = QString("update chatlist set name = '%1',time = '%2',msg = '%3' where id = '%4'")
+            .arg(data.name()).arg(data.time()).arg(data.msg()).arg(data.id());
+    if(!sql_query.exec(insert_sql))
+    {
+        qDebug() << sql_query.lastError();
+    }
+    else
+    {
+        qDebug() << "update " << data.name() << data.time() << data.msg() << data.id();
+    }
+}
+
 void ChatUserDBOperate::insertTabData(const ChatUserListData &data)
 {
     //用于执行sql语句的对象

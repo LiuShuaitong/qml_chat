@@ -11,7 +11,10 @@ public:
     QString id() const;
     QString time() const;
     QString msg() const;
-private:
+
+    void setMsg(const QString &msg);
+    void setTime(const QString &time);
+public:
     QString _id;
     QString _name;
     QString _time;

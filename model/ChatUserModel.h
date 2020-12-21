@@ -32,6 +32,7 @@ public:
     Q_INVOKABLE void insert(int index,const ChatUserListData &data) ;
     Q_INVOKABLE void append(const QString &id,const QString &name,const QString &time,const QString &msg);
 
+    ChatUserListData update(const QString &userid,const QString &msg,const QString &time);
 protected:
     virtual QHash<int, QByteArray> roleNames() const override;
 private:

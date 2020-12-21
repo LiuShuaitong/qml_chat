@@ -5,6 +5,7 @@ ItemDelegate {
     checkable: true
     width: parent.width
     height: 75
+
     onClicked: {
         ListView.view.currentIndex = index
     }
@@ -52,4 +53,5 @@ ItemDelegate {
         text: mdMsg;
         font.pixelSize: 12
     }
+
 }

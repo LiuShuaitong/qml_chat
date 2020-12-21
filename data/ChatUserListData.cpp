@@ -26,3 +26,13 @@ QString ChatUserListData::msg() const
 {
     return _msg;
 }
+
+void ChatUserListData::setMsg(const QString &msg)
+{
+    _msg = msg;
+}
+
+void ChatUserListData::setTime(const QString &time)
+{
+    _time = time;
+}

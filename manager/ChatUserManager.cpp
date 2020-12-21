@@ -116,3 +116,14 @@ void ChatUserManager::loadChatListData()
         }
     }
 }
+
+void ChatUserManager::on_addChatMsg(const QString &userid, const QString &msg,const QString &time)
+{
+    // 更新列表显示
+    ChatUserListData data = _model -> update(userid,msg,time);
+    // 写入数据库
+    if(_isConnectSql && !data.id().isEmpty())
+    {
+        _sqlOperator->updateTabData(data);
+    }
+}

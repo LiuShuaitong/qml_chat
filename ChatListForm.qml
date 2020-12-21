@@ -97,6 +97,9 @@ Rectangle {
     }
 
     Button{
+
+        property alias msg_edit: id_message_eidt.text;
+
         id:id_send_btn
         text:"发送"
         background: Rectangle{
@@ -107,6 +110,7 @@ Rectangle {
         x:parent.width - width
         y:parent.height - height
         onClicked: {
+            $chat_record_manager.send(msg_edit)
             id_message_eidt.clear()
             id_message_eidt.forceActiveFocus()
         }

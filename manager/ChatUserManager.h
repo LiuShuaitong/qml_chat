@@ -47,10 +47,28 @@ public:
     void loadChatListData();
 
 signals:
+
+    /**
+     * @brief nameChanged
+     * @param name
+     */
     void nameChanged(const QString name);
 
+    /**
+     * @brief sig_chatUserClick     点击用户列表
+     * @param id                    用户id
+     */
     void sig_chatUserClick(const QString &id);
-private:
+
+public slots:
+
+    /**
+     * @brief on_addChatMsg         增加文本信息
+     * @param userid                用户id
+     * @param msg                   消息
+     * @param time                  消息时间
+     */
+    void on_addChatMsg(const QString &userid,const QString &msg,const QString &time);
 private:
     bool _isConnectSql{false};
     QString _name;

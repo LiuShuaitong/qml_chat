@@ -54,7 +54,7 @@ void ChatRecordModel::insert(int index, const ChatRecordListData &data)
 
 void ChatRecordModel::append(const qint64 &id, const QString &userid, const bool &sender, const QString &time, const QString &msg, ChatRecordListData::MsgType type)
 {
-    insert(count(), ChatRecordListData(id,userid,sender,msg,time,type));
+    insert(count(), ChatRecordListData(id,userid,sender,time,msg,type));
 }
 
 void ChatRecordModel::remove(int index)

@@ -3,6 +3,7 @@
 Manager::Manager(QObject *parent) : QObject(parent)
 {
     QObject::connect(&_userManager,SIGNAL(sig_chatUserClick(QString)),&_recordManager,SLOT(on_chatUserClick(QString)));
+    QObject::connect(&_recordManager,SIGNAL(sig_addChatMsg(QString,QString,QString)),&_userManager,SLOT(on_addChatMsg(QString,QString,QString)));
 
     _isConnect = _db.openDB();
     if(_isConnect)

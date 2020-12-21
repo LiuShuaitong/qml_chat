@@ -31,9 +31,7 @@ Rectangle {
                         leftPadding: 5
 
                         Button{
-
                             property alias name_edit: id_name_edit.text;
-
                             y: 5
                             width: 20
                             height: 20

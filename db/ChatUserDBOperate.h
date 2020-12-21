@@ -23,6 +23,12 @@ public:
     QList<ChatUserListData> queryTabData(const QString &name = "");
 
     /**
+     * @brief updateTabData         更新数据库
+     * @param data
+     */
+    void updateTabData(const ChatUserListData &data);
+
+    /**
      * @brief insertTabData         插入数据
      * @param data
      */
