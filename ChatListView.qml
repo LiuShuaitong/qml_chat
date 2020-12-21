@@ -4,8 +4,9 @@ import QtQuick.Controls 2.0
 
 Rectangle {
     id: id_chatview
+
     ColumnLayout {
-        id:page
+        id:id_page
         anchors.fill: parent
         ListView {
             id: listView
@@ -15,29 +16,25 @@ Rectangle {
             Layout.rightMargin: 0
             displayMarginBeginning: 40
             displayMarginEnd: 40
-            verticalLayoutDirection: ListView.BottomToTop
             spacing:14
             model:$record_model
+
             delegate: Column {
+
                 anchors.left: parent.left
                 spacing: 14
                 width: parent.width
-
-                property bool same: false
-                property string msgTime: "2012/12/12"
-                property bool send: true
-                property string content: qsTr("峡谷之巅，王者如你,峡谷之巅，王者如你峡谷之巅，王者如你峡谷之巅，王者如你峡谷之巅，王者如你峡谷之巅，王者如你峡谷之巅，王者如你峡谷之巅，王者如你峡谷之巅，王者如你峡谷之巅，王者如你峡谷之巅，王者如你")
 
                 //时间
                 Rectangle {
                     width: id_time.implicitWidth + 10
                     height: id_time.implicitHeight + 2
                     anchors.horizontalCenter: parent.horizontalCenter
-                    visible: !same
+                    visible: index%6 ? false : true
                     color: "transparent"
                     Label {
                         id: id_time
-                        text: msgTime
+                        text: mdTime
                         verticalAlignment: Text.AlignVCenter
                         horizontalAlignment: Text.AlignHCenter
                         color: "#B2B3B3"
@@ -52,8 +49,7 @@ Rectangle {
                     id: id_leftRow
                     spacing: 6
                     anchors.left: parent.left
-                    visible: !send
-//                    leftPadding: 15
+                    visible: !mdSender
 
                     //头像
                     Image {
@@ -67,11 +63,11 @@ Rectangle {
                     Rectangle {
                         width: Math.min(id_msgtext_left.implicitWidth +14, listView.width - 200)
                         height: id_msgtext_left.implicitHeight + 16
-                        color:  send ? "#9dea6a" : "#ffffff"
+                        color:  mdSender ? "#9dea6a" : "#ffffff"
                         radius: 3
                         TextEdit {
                             id: id_msgtext_left
-                            text: content
+                            text: mdMsg
                             font.family: qsTr("微软雅黑")
                             font.pointSize: 13
                             anchors.fill: parent
@@ -91,18 +87,18 @@ Rectangle {
                     id: id_rightRow
                     spacing: 6
                     anchors.right: parent.right
-                    visible: send
+                    visible: mdSender
                     rightPadding: 15
                     //消息框
                     Rectangle {
                         width: Math.min(id_msgtext_right.implicitWidth +14, listView.width - 200)
                         height: id_msgtext_right.implicitHeight + 16
-                        color:  send ? "#9dea6a" : "#eeeeee"
+                        color:  mdSender ? "#9dea6a" : "#eeeeee"
                         radius: 3
 
                         TextEdit {
                             id: id_msgtext_right
-                            text: content
+                            text: mdMsg
                             font.family: qsTr("微软雅黑")
                             font.pointSize: 13
                             anchors.fill: parent
@@ -132,5 +128,9 @@ Rectangle {
                 id: verScrollBar
             }
         }
+    }
+
+    Component.onCompleted: {
+        listView.positionViewAtEnd()
     }
 }

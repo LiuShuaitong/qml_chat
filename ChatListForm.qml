@@ -22,7 +22,7 @@ Rectangle {
             color: "#000000"
             font.pixelSize: 20
             font.bold:true
-            text: $chatmanager.name;
+            text: $chat_list_manager.name;
             verticalAlignment: Text.AlignVCenter;
         }
         // 分割线
@@ -40,7 +40,7 @@ Rectangle {
     ChatListView{
         y: id_chat_top.height
         width: parent.width
-        height: parent.height - id_chat_top.height - id_message_view.height
+        height: parent.height - id_chat_top.height - id_message_view.height - id_send_btn.height
         color: "#F3F3F3"
     }
 
