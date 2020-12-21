@@ -87,4 +87,3 @@ QHash<int, QByteArray> ChatUserModel::roleNames() const
     roles[MSGRole] = "mdMsg";
     return roles;
 }
-

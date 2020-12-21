@@ -1,37 +1,11 @@
 ﻿#include "ChatUserDBOperate.h"
-#include <QDir>
 
 ChatUserDBOperate::ChatUserDBOperate(QObject *parent) : QObject(parent)
 {
-    QSqlDatabase database;
-    if (QSqlDatabase::contains("qt_sql_default_connection"))
-    {
-        database = QSqlDatabase::database("qt_sql_default_connection");
-    }
-    else
-    {
-        //建立和sqlite数据的连接
-        _db = QSqlDatabase::addDatabase("QSQLITE");
-        //设置数据库文件的名字
-        QString dbname = QDir::currentPath() +QString("/")+ QString("chat.db");
-        _db.setDatabaseName(dbname);
-    }
 }
 
 ChatUserDBOperate::~ChatUserDBOperate()
 {
-    closeDB();
-}
-
-bool ChatUserDBOperate::openDB()
-{
-    //打开数据库
-    if(_db.open() == false){
-        qDebug() << "连接数据失败！";
-        return false;
-    }
-    qDebug() << "连接数据库成功";
-    return true;
 }
 
 void ChatUserDBOperate::createTab()
@@ -101,16 +75,6 @@ void ChatUserDBOperate::insertTabData(const ChatUserListData &data)
     }
 }
 
-bool ChatUserDBOperate::IsTabExists(QString tabName)
-{
-    QSqlDatabase db = QSqlDatabase::database();
-    if(db.tables().contains(tabName))
-    {
-        return true;
-    }
-    return false;
-}
-
 void ChatUserDBOperate::deleteTabData(QString &id)
 {
     QSqlQuery query;
@@ -127,7 +91,13 @@ void ChatUserDBOperate::deleteTabData(QString &id)
     }
 }
 
-void ChatUserDBOperate::closeDB()
+bool ChatUserDBOperate::IsTabExists(QString tabName)
 {
-    _db.close();
+    QSqlDatabase db = QSqlDatabase::database();
+    if(db.tables().contains(tabName))
+    {
+        return true;
+    }
+    return false;
 }
+

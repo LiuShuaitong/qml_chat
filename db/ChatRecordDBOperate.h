@@ -1,15 +1,16 @@
-﻿#ifndef CHATUSERDBOPERATE_H
-#define CHATUSERDBOPERATE_H
+﻿#ifndef CHATRECORDDBOPERATE_H
+#define CHATRECORDDBOPERATE_H
 
 #include "DBOperateBase.h"
-#include "data/ChatUserListData.h"
+#include "data/ChatRecordListData.h"
 
-class ChatUserDBOperate : public QObject
+class ChatRecordDBOperate : public QObject
 {
     Q_OBJECT
 public:
-    explicit ChatUserDBOperate(QObject *parent = nullptr);
-    ~ChatUserDBOperate();
+    explicit ChatRecordDBOperate(QObject *parent = nullptr);
+
+    ~ChatRecordDBOperate();
 
     /**
      * @brief createTab             创建数据表(chatlist)
@@ -20,13 +21,13 @@ public:
      * @brief queryTabData          查找数据
      * @param id
      */
-    QList<ChatUserListData> queryTabData(const QString &name = "");
+    QList<ChatRecordListData> queryTabData(const QString &userid);
 
     /**
      * @brief insertTabData         插入数据
      * @param data
      */
-    void insertTabData(const ChatUserListData &data);
+    void insertTabData(const ChatRecordListData &data);
 
     /**
      * @brief deleteTabData         删除数据
@@ -35,14 +36,20 @@ public:
     void deleteTabData(QString& id);
 
     /**
+     * @brief deleteUserData        删除某一用户的全部记录
+     * @param userid
+     */
+    void deleteUserData(const QString &userid);
+
+    /**
      * @brief IsTabExists           判断数据表是否存在
      * @param tabName
      * @return
      */
     bool IsTabExists(QString tabName);
 
-private:
+signals:
 
 };
 
-#endif // CHATUSERDBOPERATE_H
+#endif // CHATRECORDDBOPERATE_H

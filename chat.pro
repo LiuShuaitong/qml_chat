@@ -14,15 +14,27 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 HEADERS += \
+    data/ChatRecordListData.h \
+    db/ChatRecordDBOperate.h \
     db/ChatUserDBOperate.h \
     data/ChatUserListData.h \
+    db/DBOperateBase.h \
+    manager/CharRecordManager.h \
     manager/ChatUserManager.h \
+    manager/Manager.h \
+    model/ChatRecordModel.h \
     model/ChatUserModel.h
 
 SOURCES += \
+        data/ChatRecordListData.cpp \
+        db/ChatRecordDBOperate.cpp \
         db/ChatUserDBOperate.cpp \
         data/ChatUserListData.cpp \
+        db/DBOperateBase.cpp \
+        manager/CharRecordManager.cpp \
         manager/ChatUserManager.cpp \
+        manager/Manager.cpp \
+        model/ChatRecordModel.cpp \
         model/ChatUserModel.cpp \
         main.cpp
 

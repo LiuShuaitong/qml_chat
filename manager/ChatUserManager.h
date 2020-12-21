@@ -13,6 +13,9 @@ public:
     explicit ChatUserManager(QObject *parent = nullptr);
     ~ChatUserManager();
 
+
+    void createDB();
+
     /**
      * @brief registQMLEngine       注册QML事件
      * @param engine
@@ -38,13 +41,16 @@ public:
     void setName(const QString &name);
     QString getName() const;
 
-signals:
-    void nameChanged(const QString name);
-private:
     /**
      * @brief loadChatListData      加载数据
      */
     void loadChatListData();
+
+signals:
+    void nameChanged(const QString name);
+
+    void sig_chatUserClick(const QString &id);
+private:
 private:
     bool _isConnectSql{false};
     QString _name;

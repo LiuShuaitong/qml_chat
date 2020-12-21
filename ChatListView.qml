@@ -17,7 +17,7 @@ Rectangle {
             displayMarginEnd: 40
             verticalLayoutDirection: ListView.BottomToTop
             spacing:14
-            model:10
+            model:$record_model
             delegate: Column {
                 anchors.left: parent.left
                 spacing: 14

@@ -48,7 +48,7 @@ Rectangle {
                             }
 
                             onClicked: {
-                                $chatmanager.search(name_edit)
+                                $chat_list_manager.search(name_edit)
                             }
                         }
 
@@ -72,7 +72,7 @@ Rectangle {
                                 implicitWidth: 175
                             }
                             onTextChanged: {
-                                $chatmanager.search(text)
+                                $chat_list_manager.search(text)
                             }
                         }
 
@@ -90,13 +90,13 @@ Rectangle {
             height: id_chat_user_form.height - id_top_view.height
             ListView{
                 anchors.fill: parent
-                model: $Model
+                model: $chat_model
                 // 切换 item 的时候将 currentIndex 也跟随着变化
                 highlightRangeMode: ListView.ApplyRange
                 // 禁止首尾滑动
 //                boundsBehavior:Flickable.StopAtBounds
                 onCurrentIndexChanged: {
-                    $chatmanager.clickChatList(currentIndex)
+                    $chat_list_manager.clickChatList(currentIndex)
                 }
                 delegate: ChatUserDelegate{}
 
