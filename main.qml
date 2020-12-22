@@ -7,7 +7,7 @@ ApplicationWindow {
     visible: true
     width: 1000
     height: 730
-    title: qsTr("Stack")
+    title: qsTr("Chat")
     background: Rectangle{
         color: "#4F4A4D"
     }
